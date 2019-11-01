@@ -46,7 +46,9 @@ function getUserInput() {
       console.log("See You Next Time.  Bye")
     }
     else {
+      // catch the error of the valid product id
       enterQuantity(userId)
+      
     }
   })
 }
@@ -65,6 +67,7 @@ function enterQuantity(userId) {
     }
   ]).then(function (val) {
     var userQuantity = val.quantity
+    // check for the stock quantity
     connection.query("SELECT * FROM products where id = ?",userId, function (err, data) {
       if (err) throw err;
       console.table(data);
