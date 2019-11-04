@@ -1,5 +1,5 @@
 var mysql = require("mysql");
-var inquire = require("inquirer");
+var inquirer = require("inquirer");
 require("console.table");
 
 var connection = mysql.createConnection({
@@ -24,6 +24,7 @@ function afterConnection() {
   connection.query("SELECT * FROM products", function (err, data) {
     if (err) throw err;
     console.table(data);
+    getUserInput();
   });
 }
 
@@ -47,7 +48,6 @@ function getUserInput() {
     }
     else {
       // catch the error of the valid product id
-      if (err) throw err;
       enterQuantity(userId)
       
     }
