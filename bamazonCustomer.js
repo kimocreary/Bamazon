@@ -47,6 +47,7 @@ function getUserInput() {
     }
     else {
       // catch the error of the valid product id
+      if (err) throw err;
       enterQuantity(userId)
       
     }
@@ -71,6 +72,7 @@ function enterQuantity(userId) {
     connection.query("SELECT * FROM products where id = ?",userId, function (err, data) {
       if (err) throw err;
       console.table(data);
+      // if vaild stock update the quantity
     });
   })
 }
