@@ -8,6 +8,7 @@
 * The customer will use the command line to enter node bamazonCustomer.js and will get back a list of products available.
 
 
+<img width="1440" alt="Bamazon" src="https://user-images.githubusercontent.com/52922745/68267303-f4d7f000-001f-11ea-95e1-e69e21de3663.png">
 
 * The user will then enter the product ID of the product they would like.
 
