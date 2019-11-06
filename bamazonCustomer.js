@@ -45,9 +45,9 @@ function getUserInput() {
     if (userId === "Q") {
       connection.end()
       console.log("See You Next Time.  Bye")
-    }
-    else {
+    } else {
       // catch the error of the valid product id
+      console.log(val,'Of User Input')
       enterQuantity(userId)
       
     }
@@ -71,8 +71,32 @@ function enterQuantity(userId) {
     // check for the stock quantity
     connection.query("SELECT * FROM products where id = ?",userId, function (err, data) {
       if (err) throw err;
-      console.table(data);
+      // console.table(data);
+      var stockQuantity = data[0].stock_quantity;
+      var ID = data[0].id;
+      console.log(userQuantity)
       // if vaild stock update the quantity
+      updateQuantity(ID, userQuantity, stockQuantity);
     });
   })
+}
+
+function updateQuantity(ID, userQuantity, stockQuantity){
+  console.log("Updating product quantities\n");
+  var query = connection.query(
+    "UPDATE products SET ? WHERE ?",
+    [
+      {
+        stock_quantity: stockQuantity - userQuantity
+      },
+      {
+        id: ID 
+      }
+    ],
+    function(err, res) {
+      if (err) throw err;
+      console.log(res.affectedRows + " products updated!\n");
+    }
+  );
+
 }
